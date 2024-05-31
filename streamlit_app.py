@@ -19,7 +19,7 @@ st.write("## These lines represent actual cash")
 st.line_chart(df[debit_cols])
 
 st.write("## These lines represent credit card debt")
-st.line_chart(df[credit_cols])
+st.line_chart(df[list(credit_cols)])
 
 st.write("## Here's the raw data I'm reading from")
 st.dataframe(df)
