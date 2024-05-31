@@ -16,7 +16,7 @@ df = pd.read_csv('data/newdata.csv', index_col='Date')
 if all(df.iloc[datetime.datetime.now().month].notna()):
     textwrap.dedent(st.write("""
         *Warning:* it looks like your data is out of date!
-    """)
+    """))
 
 credit_accs = {'Barclaycard', 'NatwestCredit'}
 credit_cols = list(credit_accs)
