@@ -7,7 +7,7 @@ import streamlit as st
 import textwrap
 
 """
-# Adam's finances
+# Libys' finances
 This is a dashboard for Adam. Yes, I know it's public.
 """
 
