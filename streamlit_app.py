@@ -7,7 +7,7 @@ import streamlit as st
 import textwrap
 
 """
-# Libys' finances
+# Adam's Financial Dashboard
 This is a dashboard for Adam. Yes, I know it's public.
 """
 
@@ -44,3 +44,5 @@ st.write("""### Here's the raw data I'm reading from
 ...so you know what I'm working with!
 """)
 st.dataframe(df)
+
+st.write("#### Well, this is all very easy")
