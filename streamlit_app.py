@@ -29,15 +29,18 @@ credit_df = df[credit_cols]
 # credit_df['Total'] = credit_df.transpose().sum()
 
 with st.container():
-    st.write('<p align="center">This is centered</p>')
-    col1, col2 = st.columns(2)
+    col1, col2, col3 = st.columns(3)
     with col1:
-        total = debit_df.iloc[datetime.datetime.now().month].sum()
+        total1 = debit_df.iloc[datetime.datetime.now().month].sum()
         st.write(f"Total in accounts: £{total:,}")
     
     with col2:
-        total = credit_df.iloc[datetime.datetime.now().month].sum()
+        total2 = credit_df.iloc[datetime.datetime.now().month].sum()
         st.write(f"Total owed: £{total:,}")
+
+    with col3:
+        total3 = total1 - total2
+        st.write(f"Total net: £{total3:,}")
 
 st.write("""
 ### These lines represent actual cash
