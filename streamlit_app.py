@@ -32,11 +32,11 @@ with st.container():
     col1, col2, col3 = st.columns(3)
     with col1:
         total1 = debit_df.iloc[datetime.datetime.now().month].sum()
-        st.write(f"Total in accounts: £{total:,}")
+        st.write(f"Total in accounts: £{total1:,}")
     
     with col2:
         total2 = credit_df.iloc[datetime.datetime.now().month].sum()
-        st.write(f"Total owed: £{total:,}")
+        st.write(f"Total owed: £{total2:,}")
 
     with col3:
         total3 = total1 - total2
