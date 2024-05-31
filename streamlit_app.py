@@ -15,7 +15,7 @@ df = pd.read_csv('data/newdata.csv', index_col='Date')
 
 if all(df.iloc[datetime.datetime.now().month].notna()):
     st.write(textwrap.dedent("""
-        *Warning:* it looks like your data is out of date!
+        ***Warning:*** it looks like your data is out of date!
     """))
 
 credit_accs = {'Barclaycard', 'NatwestCredit'}
@@ -24,9 +24,9 @@ debit_accs = set(df.columns).difference(credit_cols)
 debit_cols = list(debit_accs)
 
 debit_df = df[debit_cols]
-debit_df['Total'] = debit_df.transpose().sum()
+# debit_df['Total'] = debit_df.transpose().sum()
 credit_df = df[credit_cols]
-credit_df['Total'] = credit_df.transpose().sum()
+# credit_df['Total'] = credit_df.transpose().sum()
 
 st.write("### These lines represent actual cash")
 st.line_chart(debit_df)
