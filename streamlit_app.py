@@ -14,7 +14,7 @@ This is a dashboard for Adam. Yes, I know it's public.
 df = pd.read_csv('data/newdata.csv', index_col='Date')
 
 if all(df.iloc[datetime.datetime.now().month].notna()):
-    textwrap.dedent(st.write("""
+    st.write(textwrap.dedent("""
         *Warning:* it looks like your data is out of date!
     """))
 
