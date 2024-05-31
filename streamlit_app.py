@@ -15,7 +15,7 @@ df = pd.read_csv('data/newdata.csv', index_col='Date')
 
 if all(df.iloc[datetime.datetime.now().month].notna()):
     st.write(textwrap.dedent("""
-        ***Warning:*** it looks like your data is out of date!
+        **Warning:** it looks like your data is out of date!
     """))
 
 credit_accs = {'Barclaycard', 'NatwestCredit'}
@@ -28,11 +28,19 @@ debit_df = df[debit_cols]
 credit_df = df[credit_cols]
 # credit_df['Total'] = credit_df.transpose().sum()
 
-st.write("### These lines represent actual cash")
+st.write("""
+### These lines represent actual cash
+Ideally, these will all be going up! 
+""")
 st.line_chart(debit_df)
 
-st.write("### These lines represent credit card debt")
+st.write("""
+### These lines represent credit card debt
+Ideally, these will all be going down...
+""")
 st.line_chart(credit_df)
 
-st.write("### Here's the raw data I'm reading from")
+st.write("""### Here's the raw data I'm reading from
+...so you know what I'm working with!
+""")
 st.dataframe(df)
