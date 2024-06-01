@@ -9,8 +9,8 @@ import textwrap
 st.set_page_config(layout="wide")
 
 """
-# Adam's Financial Dashboard
-This is a dashboard for Adam. Yes, I know it's public.
+# Adam's Financial Health
+Yes, I know it's public. If you have complaints about how much or how little I have, contact your local gossip queen 👑.
 """
 
 df = pd.read_csv('data/newdata.csv', index_col='Date')
@@ -53,14 +53,18 @@ fig = px.line(
     title="Debit Bank accounts",
     labels=dict(
         value='Amount (£)',
+        MoneyboxCashISA='Cash ISA',
+        # MoneyboxS&SISA='Stocks & Shares ISA',
+        NatwestSavings='Natwest',
+        UlsterBank='Ulster'
     )
 )
 fig.update_layout(
-    legend=dict(
-        orientation='h',
-        y=-0.3,
-        yanchor='auto',
-    ),
+    #legend=dict(
+    #    orientation='h',
+    #    y=-0.3,
+    #    yanchor='auto',
+    #),
     legend_title=dict(
         text=None
     )
