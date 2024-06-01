@@ -80,7 +80,7 @@ with view_tab:
             text=None
         )
     )
-    st.plotly_chart(fig)
+    st.plotly_chart(debit_fig)
     
     st.write("""
     ### These lines represent credit card debt
@@ -103,7 +103,7 @@ with view_tab:
             text=None
         )
     )
-    st.line_chart(credit_df)
+    st.plotly_chart(credit_fig)
 
 with edit_tab:
     edited_df = st.data_editor(df)
