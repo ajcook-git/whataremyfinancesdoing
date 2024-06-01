@@ -69,7 +69,7 @@ with view_tab:
         debit_df,
         labels=dict(
             value='Amount (£)',
-            Date=None
+            Date=""
         ),
     )
     fig.update_layout(
