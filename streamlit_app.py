@@ -68,7 +68,7 @@ fig = px.line(
         value='Amount (£)'
     ),
     hover_data={
-        'Amount (£)': ':,.2f'
+        'index': ':,.2f'
     },
 )
 fig.update_layout(
