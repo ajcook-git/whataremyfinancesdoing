@@ -68,7 +68,8 @@ with view_tab:
     fig = px.line(
         debit_df,
         labels=dict(
-            value='Amount (£)'
+            value='Amount (£)',
+            Date=None
         ),
     )
     fig.update_layout(
