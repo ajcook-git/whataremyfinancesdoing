@@ -39,7 +39,7 @@ debit_df = df[debit_cols]
 credit_df = df[credit_cols]
 # credit_df['Total'] = credit_df.transpose().sum()
 
-st.write("## Summary")
+st.write("### Summary")
 with st.container():
     col1, col2, col3 = st.columns(3)
     with col1:
@@ -62,6 +62,7 @@ view_tab, edit_tab = st.tabs(['View', 'Edit'])
 with view_tab:
     st.write("""
     ### These lines represent accounts with actual money in
+    You'll notice I've only selected my "main" accounts (missing: Marcus)
     """)
     fig = px.line(
         debit_df,
@@ -84,6 +85,7 @@ with view_tab:
     
     st.write("""
     ### These lines represent credit card debt
+    The "primary" account is Barclaycard, the "secondary" account is Natwest
     """)
     st.line_chart(credit_df)
     
