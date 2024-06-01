@@ -136,5 +136,10 @@ with edit_tab:
     edited_df = st.data_editor(df)
     edited_df.to_csv('data/newdata.csv')
 
-    if st.button('Update'):
-        st.rerun()
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button('Update'):
+            st.rerun()
+    
+    with col2:
+        st.download_button("Download", open(edited_df, 'r'), 'data.csv')
