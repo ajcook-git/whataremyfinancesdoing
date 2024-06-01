@@ -6,7 +6,7 @@ import plotly.express as px
 import streamlit as st
 import textwrap
 
-st.set_page_config(layout="wide")
+st.set_page_config(layout="centered")  # set to "wide" for widescreen
 
 """
 # Adam's Financial Health
@@ -29,6 +29,7 @@ if not all(df.iloc[datetime.datetime.now().month-1].notna()):
     """))
 st.write(f"Today's date: {datetime.datetime.now().strftime('%A %d %B %Y')}")
 
+# Seperate credit and debit accounts
 credit_accs = {'Credit card (primary)', 'Credit card (secondary)'}
 credit_cols = list(credit_accs)
 debit_accs = set(df.columns).difference(credit_cols)
@@ -44,11 +45,11 @@ with st.container():
     col1, col2, col3 = st.columns(3)
     with col1:
         total1 = debit_df.iloc[datetime.datetime.now().month-1].sum()
-        st.write(f"Total in accounts: £{total1:,}")
+        st.write(f"Total debit: £{total1:,}")
 
     with col2:
         total2 = credit_df.iloc[datetime.datetime.now().month-1].sum()
-        st.write(f"Total owed: £{total2:,}")
+        st.write(f"Total credit: £{total2:,}")
 
     with col3:
         total3 = total1 - total2
