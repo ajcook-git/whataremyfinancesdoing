@@ -52,7 +52,8 @@ with st.container():
     with col2:
         credit_now = credit_df.iloc[month_now].sum()
         credit_last = credit_df.iloc[month_last].sum()
-        st.metric("Credit", f"£{credit_now:,.2f}", f"£{credit_now-credit_last:,.2f}")
+        st.metric("Credit", f"£{credit_now:,.2f}",
+                  f"£{credit_now-credit_last:,.2f}", delta_color='inverse')
 
     with col3:
         net_now = debit_now - credit_now
