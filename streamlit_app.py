@@ -1,8 +1,8 @@
-# import altair as alt
+import altair as alt
 # import numpy as np
 import datetime
 import pandas as pd
-# import plotly.express as px
+import plotly.express as px
 import streamlit as st
 import textwrap
 
@@ -17,6 +17,7 @@ if not all(df.iloc[datetime.datetime.now().month].notna()):
     st.write(textwrap.dedent("""
         **Warning:** it looks like your data is out of date!
     """))
+st.write(f"Today's date: {datetime.datetime.strftime('%d %b %Y')}")
 
 credit_accs = {'Barclaycard', 'NatwestCredit'}
 credit_cols = list(credit_accs)
@@ -31,11 +32,11 @@ credit_df = df[credit_cols]
 with st.container():
     col1, col2, col3 = st.columns(3)
     with col1:
-        total1 = debit_df.iloc[datetime.datetime.now().month].sum()
+        total1 = debit_df.iloc[datetime.datetime.now().month-1].sum()
         st.write(f"Total in accounts: £{total1:,}")
-    
+
     with col2:
-        total2 = credit_df.iloc[datetime.datetime.now().month].sum()
+        total2 = credit_df.iloc[datetime.datetime.now().month-1].sum()
         st.write(f"Total owed: £{total2:,}")
 
     with col3:
@@ -46,7 +47,14 @@ st.write("""
 ### These lines represent actual cash
 Ideally, these will all be going up! 
 """)
+st.write("#### Streamlit")
 st.line_chart(debit_df)
+st.write("#### Altair")
+st.altair_chart(debit_df)
+st.write("#### Plotly.express")
+px.line(
+    debit_df,
+)
 
 st.write("""
 ### These lines represent credit card debt
