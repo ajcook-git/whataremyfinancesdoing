@@ -67,9 +67,9 @@ fig = px.line(
     labels=dict(
         value='Amount (£)'
     ),
-    hover_data={
-        'index': ':,.2f'
-    },
+    # hover_data={
+    #     'index': ':,.2f'
+    # },
 )
 fig.update_layout(
     #legend=dict(
