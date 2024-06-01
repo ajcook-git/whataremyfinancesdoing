@@ -49,12 +49,10 @@ Ideally, these will all be going up!
 """)
 st.write("#### Streamlit")
 st.line_chart(debit_df)
-st.write("#### Altair")
-st.altair_chart(debit_df)
 st.write("#### Plotly.express")
-px.line(
+st.plotly_chart(px.line(
     debit_df
-)
+))
 
 st.write("""
 ### These lines represent credit card debt
