@@ -47,12 +47,22 @@ st.write("""
 ### These lines represent actual cash
 Ideally, these will all be going up! 
 """)
-st.write("#### Streamlit")
-st.line_chart(debit_df)
+# st.write("#### Streamlit")
+# st.line_chart(debit_df)
 st.write("#### Plotly.express")
-st.plotly_chart(px.line(
-    debit_df
+fig = px.line(
+    debit_df,
+    labels=dict(
+        value='Amount (£)',
+        Date='Date (by month)'
+    )
+)
+fig.update_layout(legend=dict(
+    orientation='h',
+    y=-0.3,
+    yanchor='auto'
 ))
+st.plotly_chart(fig)
 
 st.write("""
 ### These lines represent credit card debt
