@@ -45,17 +45,19 @@ with st.container():
     month_now = datetime.datetime.now().month - 1
     month_last = month_now - 1
     with col1:
-        total1 = debit_df.iloc[month_now].sum()
-        st.metric("Debit", f"£{total1:,.2f}", None)
+        debit_now = debit_df.iloc[month_now].sum()
+        debit_last = debit_df.iloc[month_last].sum()
+        st.metric("Debit", f"£{debit_now:,.2f}", f"£{debit_now-debit_last:,.2f}")
 
     with col2:
-        total2 = credit_df.iloc[month_now].sum()
-        st.metric("Credit", f"£{total2:,.2f}", None)
+        credit_now = credit_df.iloc[month_now].sum()
+        credit_last = credit_df.iloc[month_last].sum()
+        st.metric("Credit", f"£{credit_now:,.2f}", f"£{credit_now-credit_last:,.2f}")
 
     with col3:
-        total3 = total1 - total2
-        total3_diff = total3 - (debit_df.iloc[month_last].sum() - credit_df.iloc[month_last].sum())
-        st.metric("Net worth", f"£{total3:,.2f}", f"£{total3_diff:,.2f}")
+        net_now = debit_now - credit_now
+        net_last = debit_last - credit_last
+        st.metric("Net worth", f"£{net_now:,.2f}", f"£{net_now-net_last:,.2f}")
 
 view_tab, edit_tab = st.tabs(['View', 'Edit'])
 with view_tab:
