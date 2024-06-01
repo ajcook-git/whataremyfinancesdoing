@@ -66,7 +66,10 @@ fig = px.line(
     debit_df,
     labels=dict(
         value='Amount (£)'
-    )
+    ),
+    hover_data={
+        'Amount (£)': ':,.2f'
+    },
 )
 fig.update_layout(
     #legend=dict(
