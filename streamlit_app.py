@@ -142,4 +142,4 @@ with edit_tab:
             st.rerun()
     
     with col2:
-        st.download_button("Download", open(edited_df, 'r'), 'data.csv')
+        st.download_button("Download", open('data/newdata.csv', 'r'), 'data.csv')
