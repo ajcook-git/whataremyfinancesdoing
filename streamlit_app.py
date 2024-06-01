@@ -97,5 +97,8 @@ with view_tab:
 with edit_tab:
     edited_df = st.data_editor(df)
     edited_df.to_csv('data/newdata.csv')
+
+    if st.button('Update'):
+        st.rerun()
     
 st.write("#### Well, this is all very easy")
