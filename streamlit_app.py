@@ -39,7 +39,6 @@ debit_df = df[debit_cols]
 credit_df = df[credit_cols]
 # credit_df['Total'] = credit_df.transpose().sum()
 
-view_tab, edit_tab = st.tabs(['View', 'Edit'])
 st.write("## Summary")
 with st.container():
     col1, col2, col3 = st.columns(3)
@@ -59,6 +58,7 @@ with st.container():
             icon = "🔴"
         st.write(f"Total net: **£{total3:,}** {icon}")
 
+view_tab, edit_tab = st.tabs(['View', 'Edit'])
 with view_tab:
     st.write("""
     ### These lines represent accounts with actual money in
