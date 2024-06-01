@@ -90,8 +90,9 @@ with view_tab:
     """)
     st.line_chart(credit_df)
     
-    st.write("""### Here's the raw data I'm reading from
-    ...so you know what I'm working with!
+    st.write("""
+    ### Here's the raw data I'm reading from
+    P.s. you can edit this in the 'edit' tab!
     """)
     st.dataframe(df)
 
