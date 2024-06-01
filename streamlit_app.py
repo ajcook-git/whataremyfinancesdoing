@@ -13,7 +13,7 @@ This is a dashboard for Adam. Yes, I know it's public.
 
 df = pd.read_csv('data/newdata.csv', index_col='Date')
 
-if not all(df.iloc[datetime.datetime.now().month].notna()):
+if not all(df.iloc[datetime.datetime.now().month-1].notna()):
     st.write(textwrap.dedent("""
         **Warning:** it looks like your data is out of date!
     """))
