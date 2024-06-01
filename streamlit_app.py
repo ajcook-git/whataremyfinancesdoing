@@ -8,7 +8,6 @@ st.set_page_config(layout="centered")  # set to "wide" for widescreen
 
 """
 # Adam's Financial Health 💵
-Yes, I know it's public.
 """
 
 df = pd.read_csv('data/newdata.csv', index_col='Date')
@@ -86,6 +85,11 @@ with view_tab:
         )
     )
     st.plotly_chart(debit_fig)
+
+    # Visible page divide
+    """
+    
+    """
     
     st.write("""
     ### These lines represent credit card debt
