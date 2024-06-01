@@ -45,22 +45,18 @@ with st.container():
 
 st.write("""
 ### These lines represent actual cash
-Ideally, these will all be going up! 
-""")
-# st.write("#### Streamlit")
-# st.line_chart(debit_df)
-st.write("#### Plotly.express")
+Ideally, these will all be going up!""")
 fig = px.line(
     debit_df,
+    title="Debit Bank accounts"
     labels=dict(
         value='Amount (£)',
-        Date='Date (by month)'
     )
 )
 fig.update_layout(
     legend=dict(
         orientation='h',
-        y=-0.4,
+        y=-0.3,
         yanchor='auto',
     ),
     legend_title=dict(
