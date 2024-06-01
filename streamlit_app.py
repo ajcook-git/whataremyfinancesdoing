@@ -42,7 +42,7 @@ if net_last >= 0:
 else:
     home_message = "Adam, your finances went :red[down] this month; take a look."
 
-st.write(f"""
+st.markdown(f"""
 # Adam's Financial Health 💵
 {home_message}
 """)
