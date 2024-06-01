@@ -21,7 +21,7 @@ df.rename({
      'UlsterBank': 'Easy-access Saver',
      'Barclaycard': 'Credit card (primary)',
      'NatwestCredit': 'Credit card (secondary)'
-}, axis=1)
+}, axis=1, inplace=True)
 
 if not all(df.iloc[datetime.datetime.now().month-1].notna()):
     st.write(textwrap.dedent("""
