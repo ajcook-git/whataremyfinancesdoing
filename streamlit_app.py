@@ -41,57 +41,61 @@ debit_df = df[debit_cols]
 credit_df = df[credit_cols]
 # credit_df['Total'] = credit_df.transpose().sum()
 
-with st.container():
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        total1 = debit_df.iloc[datetime.datetime.now().month-1].sum()
-        st.write(f"Total debit: £{total1:,}")
+view_tab, edit_tab = st.tabs(['View', 'Edit'])
 
-    with col2:
-        total2 = credit_df.iloc[datetime.datetime.now().month-1].sum()
-        st.write(f"Total credit: £{total2:,}")
-
-    with col3:
-        total3 = total1 - total2
-        if total3 > 0:
-            icon = "🟢"
-        else:
-            icon = "🔴"
-        st.write(f"Total net: **£{total3:,}** {icon}")
-
-st.write("""
-### These lines represent accounts with actual money in
-Ideally, these will all be going up!""")
-fig = px.line(
-    debit_df,
-    labels=dict(
-        value='Amount (£)'
-    ),
-    # hover_data={
-    #     'index': ':,.2f'
-    # },
-)
-fig.update_layout(
-    #legend=dict(
-    #    orientation='h',
-    #    y=-0.3,
-    #    yanchor='auto',
-    #),
-    legend_title=dict(
-        text=None
+with view_tab:
+    with st.container():
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            total1 = debit_df.iloc[datetime.datetime.now().month-1].sum()
+            st.write(f"Total debit: £{total1:,}")
+    
+        with col2:
+            total2 = credit_df.iloc[datetime.datetime.now().month-1].sum()
+            st.write(f"Total credit: £{total2:,}")
+    
+        with col3:
+            total3 = total1 - total2
+            if total3 > 0:
+                icon = "🟢"
+            else:
+                icon = "🔴"
+            st.write(f"Total net: **£{total3:,}** {icon}")
+    
+    st.write("""
+    ### These lines represent accounts with actual money in
+    Ideally, these will all be going up!""")
+    fig = px.line(
+        debit_df,
+        labels=dict(
+            value='Amount (£)'
+        ),
     )
-)
-st.plotly_chart(fig)
+    fig.update_layout(
+        #legend=dict(
+        #    orientation='h',
+        #    y=-0.3,
+        #    yanchor='auto',
+        #),
+        legend_title=dict(
+            text=None
+        )
+    )
+    st.plotly_chart(fig)
+    
+    st.write("""
+    ### These lines represent credit card debt
+    Ideally, these will all be going down...
+    """)
+    st.line_chart(credit_df)
+    
+    st.write("""### Here's the raw data I'm reading from
+    ...so you know what I'm working with!
+    """)
+    st.dataframe(df)
 
-st.write("""
-### These lines represent credit card debt
-Ideally, these will all be going down...
-""")
-st.line_chart(credit_df)
-
-st.write("""### Here's the raw data I'm reading from
-...so you know what I'm working with!
-""")
-st.dataframe(df)
-
+with edit_tab:
+    edited_df = st.data_editor(df)
+    edited_df.to_csv('data/newdata.csv')
+    
 st.write("#### Well, this is all very easy")
