@@ -44,6 +44,8 @@ else:
 
 multi = f"""
 # Adam's Financial Health 💵
+**{datetime.datetime.now().strftime('%A %d %B %Y')}**
+
 {home_message}
 """
 st.markdown(multi)
@@ -52,7 +54,6 @@ if not all(df.iloc[datetime.datetime.now().month-1].notna()):
     st.write(textwrap.dedent("""
         **Warning:** it looks like your data is out of date!
     """))
-st.write(datetime.datetime.now().strftime('%A %d %B %Y'))
 
 st.write("### Summary")
 with st.container():
