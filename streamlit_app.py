@@ -43,7 +43,11 @@ with st.container():
 
     with col3:
         total3 = total1 - total2
-        st.write(f"Total net: **£{total3:,}**")
+        if total3 > 0:
+            icon = "🟢"
+        else:
+            icon = "🔴"
+        st.write(f"Total net: **£{total3:,}** {icon}")
 
 st.write("""
 ### These lines represent actual cash
