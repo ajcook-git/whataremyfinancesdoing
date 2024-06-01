@@ -14,6 +14,14 @@ Yes, I know it's public. If you have complaints about how much or how little I h
 """
 
 df = pd.read_csv('data/newdata.csv', index_col='Date')
+df.rename({
+     'MoneyboxCashISA': 'Cash ISA',
+     'MoneyboxS&SISA': 'Stocks/Shares ISA',
+     'NatwestSavings': 'Regular Saver',
+     'UlsterBank': 'Easy-access Saver',
+     'Barclaycard': 'Credit card (primary)',
+     'NatwestCredit': 'Credit card (secondary)'
+}, axis=1)
 
 if not all(df.iloc[datetime.datetime.now().month-1].notna()):
     st.write(textwrap.dedent("""
@@ -21,18 +29,12 @@ if not all(df.iloc[datetime.datetime.now().month-1].notna()):
     """))
 st.write(f"Today's date: {datetime.datetime.now().strftime('%A %d %B %Y')}")
 
-credit_accs = {'Barclaycard', 'NatwestCredit'}
+credit_accs = {'Credit card (primary)', 'Credit card (secondary)'}
 credit_cols = list(credit_accs)
 debit_accs = set(df.columns).difference(credit_cols)
 debit_cols = list(debit_accs)
 
 debit_df = df[debit_cols]
-debit_df.rename({
-     'MoneyboxCashISA': 'Cash ISA',
-     'MoneyboxS&SISA': 'Stocks/Shares ISA',
-     'NatwestSavings': 'Regular Saver',
-     'UlsterBank': 'Easy-access Saver'
-}, axis=1)
 # debit_df['Total'] = debit_df.transpose().sum()
 credit_df = df[credit_cols]
 # credit_df['Total'] = credit_df.transpose().sum()
