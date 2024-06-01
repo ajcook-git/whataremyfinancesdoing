@@ -38,7 +38,7 @@ net_now = debit_now - credit_now
 net_last = debit_last - credit_last
 
 if net_now - net_last >= 0:
-    home_message = "Adam, your finances are looking :green[good]!"
+    home_message = "Adam, your finances are looking :green[good]! 💸"
 else:
     home_message = "Adam, your finances went :red[down] this month."
     if net_now >= 0:
