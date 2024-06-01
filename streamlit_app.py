@@ -27,6 +27,12 @@ debit_accs = set(df.columns).difference(credit_cols)
 debit_cols = list(debit_accs)
 
 debit_df = df[debit_cols]
+debit_df.rename({
+     'MoneyboxCashISA': 'Cash ISA',
+     'MoneyboxS&SISA': 'Stocks/Shares ISA',
+     'NatwestSavings': 'Regular Saver',
+     'UlsterBank': 'Easy-access Saver'
+}, axis=1)
 # debit_df['Total'] = debit_df.transpose().sum()
 credit_df = df[credit_cols]
 # credit_df['Total'] = credit_df.transpose().sum()
@@ -56,11 +62,7 @@ fig = px.line(
     debit_df,
     title="Debit Bank accounts",
     labels=dict(
-        value='Amount (£)',
-        MoneyboxCashISA='Cash ISA',
-        # MoneyboxS&SISA='Stocks & Shares ISA',
-        NatwestSavings='Natwest',
-        UlsterBank='Ulster'
+        value='Amount (£)'
     )
 )
 fig.update_layout(
