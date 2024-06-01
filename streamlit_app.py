@@ -73,11 +73,11 @@ with view_tab:
         ),
     )
     fig.update_layout(
-        #legend=dict(
-        #    orientation='h',
-        #    y=-0.3,
-        #    yanchor='auto',
-        #),
+        legend=dict(
+           orientation='h',
+           y=-0.3,
+           yanchor='auto',
+        ),
         legend_title=dict(
             text=None
         )
