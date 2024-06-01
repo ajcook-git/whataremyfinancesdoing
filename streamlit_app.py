@@ -42,10 +42,10 @@ if net_last >= 0:
 else:
     home_message = "Adam, your finances went :red[down] this month; take a look."
 
-f"""
+st.write(f"""
 # Adam's Financial Health 💵
 {home_message}
-"""
+""")
 
 if not all(df.iloc[datetime.datetime.now().month-1].notna()):
     st.write(textwrap.dedent("""
