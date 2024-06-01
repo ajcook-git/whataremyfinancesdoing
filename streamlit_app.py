@@ -17,7 +17,7 @@ if not all(df.iloc[datetime.datetime.now().month].notna()):
     st.write(textwrap.dedent("""
         **Warning:** it looks like your data is out of date!
     """))
-st.write(f"Today's date: {datetime.datetime.strftime('%d %b %Y')}")
+st.write(f"Today's date: {datetime.datetime.now().strftime('%A %d %B %Y')}")
 
 credit_accs = {'Barclaycard', 'NatwestCredit'}
 credit_cols = list(credit_accs)
@@ -53,7 +53,7 @@ st.write("#### Altair")
 st.altair_chart(debit_df)
 st.write("#### Plotly.express")
 px.line(
-    debit_df,
+    debit_df
 )
 
 st.write("""
