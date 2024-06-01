@@ -42,21 +42,20 @@ credit_df = df[credit_cols]
 st.write("### Summary")
 with st.container():
     col1, col2, col3 = st.columns(3)
+    month_now = datetime.datetime.now().month - 1
+    month_last = month_now - 1
     with col1:
-        total1 = debit_df.iloc[datetime.datetime.now().month-1].sum()
-        st.write(f"Total debit: £{total1:,}")
+        total1 = debit_df.iloc[month_now].sum()
+        st.metric("Debit", f"£{total1:,.2f}", None)
 
     with col2:
-        total2 = credit_df.iloc[datetime.datetime.now().month-1].sum()
-        st.write(f"Total credit: £{total2:,}")
+        total2 = credit_df.iloc[month_now].sum()
+        st.metric("Credit", f"£{total2:,.2f}", None)
 
     with col3:
         total3 = total1 - total2
-        if total3 > 0:
-            icon = "🟢"
-        else:
-            icon = "🔴"
-        st.write(f"Total net: **£{total3:,}** {icon}")
+        total3_diff = total3 - (debit_df.iloc[month_last].sum() - credit_df.iloc[month_last].sum())
+        st.metric("Net worth", f"£{total3:,.2f}", f"£{total3_diff}")
 
 view_tab, edit_tab = st.tabs(['View', 'Edit'])
 with view_tab:
@@ -64,14 +63,14 @@ with view_tab:
     ### These lines represent accounts with actual money in
     You'll notice I've only selected my "main" accounts (missing: Marcus)
     """)
-    fig = px.line(
+    debit_fig = px.line(
         debit_df,
         labels=dict(
             value='Amount (£)',
             Date=""
         ),
     )
-    fig.update_layout(
+    debit_fig.update_layout(
         legend=dict(
            orientation='h',
            y=-0.3,
@@ -87,13 +86,24 @@ with view_tab:
     ### These lines represent credit card debt
     The "primary" account is Barclaycard, the "secondary" account is Natwest
     """)
+    credit_fig = px.line(
+        credit_df,
+        labels=dict(
+            value='Amount (£)',
+            Date=""
+        ),
+    )
+    credit_fig.update_layout(
+        legend=dict(
+           orientation='h',
+           y=-0.3,
+           yanchor='auto',
+        ),
+        legend_title=dict(
+            text=None
+        )
+    )
     st.line_chart(credit_df)
-    
-    st.write("""
-    ### Here's the raw data I'm reading from
-    P.s. you can edit this in the 'edit' tab!
-    """)
-    st.dataframe(df)
 
 with edit_tab:
     edited_df = st.data_editor(df)
