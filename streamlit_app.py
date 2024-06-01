@@ -48,7 +48,7 @@ st.write("""
 Ideally, these will all be going up!""")
 fig = px.line(
     debit_df,
-    title="Debit Bank accounts"
+    title="Debit Bank accounts",
     labels=dict(
         value='Amount (£)',
     )
