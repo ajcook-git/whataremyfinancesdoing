@@ -55,7 +55,7 @@ with st.container():
     with col3:
         total3 = total1 - total2
         total3_diff = total3 - (debit_df.iloc[month_last].sum() - credit_df.iloc[month_last].sum())
-        st.metric("Net worth", f"£{total3:,.2f}", f"£{total3_diff}")
+        st.metric("Net worth", f"£{total3:,.2f}", f"£{total3_diff:,.2f}")
 
 view_tab, edit_tab = st.tabs(['View', 'Edit'])
 with view_tab:
