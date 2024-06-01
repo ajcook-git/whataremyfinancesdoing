@@ -60,11 +60,10 @@ with st.container():
         st.write(f"Total net: **£{total3:,}** {icon}")
 
 st.write("""
-### These lines represent actual cash
+### These lines represent accounts with actual money in
 Ideally, these will all be going up!""")
 fig = px.line(
     debit_df,
-    title="Debit Bank accounts",
     labels=dict(
         value='Amount (£)'
     )
