@@ -136,7 +136,7 @@ with edit_tab:
     edited_df = st.data_editor(df)
     edited_df.to_csv('data/newdata.csv')
 
-    col1, col2 = st.columns(2)
+    col1, col2, _, _ = st.columns(4)
     with col1:
         if st.button('Update'):
             st.rerun()
