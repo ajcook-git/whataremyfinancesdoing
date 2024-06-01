@@ -1,5 +1,3 @@
-# import altair as alt
-# import numpy as np
 import datetime
 import pandas as pd
 import plotly.express as px
@@ -9,8 +7,8 @@ import textwrap
 st.set_page_config(layout="centered")  # set to "wide" for widescreen
 
 """
-# Adam's Financial Health
-Yes, I know it's public. If you have complaints about how much or how little I have, contact your local gossip queen 👑.
+# Adam's Financial Health 💵
+Yes, I know it's public.
 """
 
 df = pd.read_csv('data/newdata.csv', index_col='Date')
@@ -42,29 +40,29 @@ credit_df = df[credit_cols]
 # credit_df['Total'] = credit_df.transpose().sum()
 
 view_tab, edit_tab = st.tabs(['View', 'Edit'])
+st.write("## Summary")
+with st.container():
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        total1 = debit_df.iloc[datetime.datetime.now().month-1].sum()
+        st.write(f"Total debit: £{total1:,}")
+
+    with col2:
+        total2 = credit_df.iloc[datetime.datetime.now().month-1].sum()
+        st.write(f"Total credit: £{total2:,}")
+
+    with col3:
+        total3 = total1 - total2
+        if total3 > 0:
+            icon = "🟢"
+        else:
+            icon = "🔴"
+        st.write(f"Total net: **£{total3:,}** {icon}")
 
 with view_tab:
-    with st.container():
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            total1 = debit_df.iloc[datetime.datetime.now().month-1].sum()
-            st.write(f"Total debit: £{total1:,}")
-    
-        with col2:
-            total2 = credit_df.iloc[datetime.datetime.now().month-1].sum()
-            st.write(f"Total credit: £{total2:,}")
-    
-        with col3:
-            total3 = total1 - total2
-            if total3 > 0:
-                icon = "🟢"
-            else:
-                icon = "🔴"
-            st.write(f"Total net: **£{total3:,}** {icon}")
-    
     st.write("""
     ### These lines represent accounts with actual money in
-    Ideally, these will all be going up!""")
+    """)
     fig = px.line(
         debit_df,
         labels=dict(
@@ -86,7 +84,6 @@ with view_tab:
     
     st.write("""
     ### These lines represent credit card debt
-    Ideally, these will all be going down...
     """)
     st.line_chart(credit_df)
     
@@ -102,5 +99,3 @@ with edit_tab:
 
     if st.button('Update'):
         st.rerun()
-    
-st.write("#### Well, this is all very easy")
