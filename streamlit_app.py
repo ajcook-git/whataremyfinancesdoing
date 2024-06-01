@@ -1,10 +1,12 @@
-import altair as alt
+# import altair as alt
 # import numpy as np
 import datetime
 import pandas as pd
 import plotly.express as px
 import streamlit as st
 import textwrap
+
+st.set_page_config(layout="wide")
 
 """
 # Adam's Financial Dashboard
