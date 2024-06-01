@@ -33,6 +33,7 @@ credit_accs = {'Credit card (primary)', 'Credit card (secondary)'}
 credit_cols = list(credit_accs)
 debit_accs = set(df.columns).difference(credit_cols)
 debit_cols = list(debit_accs)
+debit_cols.remove("Marcus")
 
 debit_df = df[debit_cols]
 # debit_df['Total'] = debit_df.transpose().sum()
