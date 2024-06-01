@@ -40,9 +40,9 @@ net_last = debit_last - credit_last
 if net_now - net_last >= 0:
     home_message = "Adam, your finances are looking :green[good]!"
 else:
-    home_message = "Adam, your finances went :red[down] this month; take a look."
+    home_message = "Adam, your finances went :red[down] this month."
     if net_now >= 0:
-        home_message += " But overall, you're still :green[positive]!"
+        home_message += " But overall, you're still :green[positive]! 😀"
 
 multi = f"""
 # Adam's Financial Health 💵
