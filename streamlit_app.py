@@ -42,7 +42,7 @@ if net_now - net_last >= 0:
 else:
     home_message = "Adam, your finances went :red[down] this month; take a look."
     if net_now >= 0:
-        home_message += " Overall, you're still :green[positive]!"
+        home_message += " But overall, you're still :green[positive]!"
 
 multi = f"""
 # Adam's Financial Health 💵
