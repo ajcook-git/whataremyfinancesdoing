@@ -86,10 +86,7 @@ with view_tab:
     )
     st.plotly_chart(debit_fig)
 
-    # Visible page divide
-    """
-    
-    """
+    st.divider()
     
     st.write("""
     ### These lines represent credit card debt
