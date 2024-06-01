@@ -57,11 +57,16 @@ fig = px.line(
         Date='Date (by month)'
     )
 )
-fig.update_layout(legend=dict(
-    orientation='h',
-    y=-0.3,
-    yanchor='auto'
-))
+fig.update_layout(
+    legend=dict(
+        orientation='h',
+        y=-0.4,
+        yanchor='auto',
+    ),
+    legend_title=dict(
+        text=None
+    )
+)
 st.plotly_chart(fig)
 
 st.write("""
