@@ -21,11 +21,12 @@ def data_load():
 
     return x, y
 
-st.set_page_config(layout="centered")  # set to "wide" for widescreen
+# Un-comment for wide screen
+# st.set_page_config(layout="wide")  
 
 df, csdf = data_load()
 
-# Seperate credit and debit accounts
+# Separate credit and debit accounts
 credit_accs = {'Credit card (primary)', 'Credit card (secondary)'}
 credit_cols = list(credit_accs)
 debit_accs = set(df.columns).difference(credit_cols)
@@ -65,6 +66,7 @@ if not all(df.iloc[datetime.datetime.now().month-1].notna()):
         **Warning:** it looks like your data is out of date!
     """))
 
+# Quick summmary at the top of the page
 st.write("### Summary")
 with st.container():
     col1, col2, col3 = st.columns(3)
@@ -157,7 +159,13 @@ with creditscore_tab:
     # - Experian = Experian (score/999)
     # - Equifax = Clear Score (score/1000)
     # - TransUnion = Credit Karma (score/710)
-    st.plotly_chart(px.pie(csdf, names=['Experian']))
+    month_now = datetime.datetime.strftime('%Y-%m-%d')
+    mask = [999, 1_000, 710]
+
+    fig = px.pie(
+        csdf.loc[month_now] / mask
+    )
+    st.plotly_chart(fig)
 
 with todo_tab:
     things_to_do = textwrap.dedent("""
