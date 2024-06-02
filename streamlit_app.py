@@ -159,7 +159,7 @@ with creditscore_tab:
     # - Experian = Experian (score/999)
     # - Equifax = Clear Score (score/1000)
     # - TransUnion = Credit Karma (score/710)
-    month_now = datetime.datetime.strftime('%Y-%m-%d')
+    month_now = datetime.datetime.now().strftime('%Y-%m-%d')
     mask = [999, 1_000, 710]
 
     fig = px.pie(
