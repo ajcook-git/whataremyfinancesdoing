@@ -17,7 +17,8 @@ def data_load():
     }, axis=1, inplace=True)
 
     # loads credit scores
-    y = pd.read_csv('data/creditscores.csv', index_col='Date')
+    y = pd.read_csv('data/creditscores.csv', index_col='Date',
+                    parse_dates=True)
 
     return x, y
 
@@ -159,7 +160,7 @@ with creditscore_tab:
     # - Experian = Experian (score/999)
     # - Equifax = Clear Score (score/1000)
     # - TransUnion = Credit Karma (score/710)
-    month_now = datetime.datetime.now().strftime('%Y-%m-%d')
+    month_now = datetime.datetime.now().strftime('%Y-%m')
     mask = [999, 1_000, 710]
 
     fig = px.pie(
