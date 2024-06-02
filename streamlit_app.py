@@ -164,8 +164,9 @@ with creditscore_tab:
     mask = [999, 1_000, 710]
 
     fig = px.pie(
-        csdf.loc[month_now] / mask,
-        names=['Equifax']
+        (csdf.loc[month_now] / mask).transpose(),
+        names=['Equifax'],
+
     )
     st.plotly_chart(fig)
 
