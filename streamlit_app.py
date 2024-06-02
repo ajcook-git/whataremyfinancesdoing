@@ -162,11 +162,11 @@ with creditscore_tab:
     # - TransUnion = Credit Karma (score/710)
     month_now = datetime.datetime.now().strftime('%Y-%m')
     mask = [999, 1_000, 710]
+    data = csdf.loc[month_now, 'Equifax'] / 999
 
     fig = px.pie(
-        (csdf.loc[month_now] / mask).transpose(),
-        names=['Equifax'],
-
+        names=['Equifax', None], 
+        values=[data, 1-data]
     )
     st.plotly_chart(fig)
 
