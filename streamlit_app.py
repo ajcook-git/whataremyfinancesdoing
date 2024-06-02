@@ -4,18 +4,26 @@ import plotly.express as px
 import streamlit as st
 import textwrap
 
+def data_load():
+    # loads bank balances
+    x = pd.read_csv('data/newdata.csv', index_col='Date')
+    x.rename({
+         'MoneyboxCashISA': 'Cash ISA',
+         'MoneyboxS&SISA': 'Stocks/Shares ISA',
+         'NatwestSavings': 'Regular Saver',
+         'UlsterBank': 'Easy-access Saver',
+         'Barclaycard': 'Credit card (primary)',
+         'NatwestCredit': 'Credit card (secondary)'
+    }, axis=1, inplace=True)
+
+    # loads credit scores
+    y = pd.read_csv('data/creditscores.csv', index_col='Date')
+
+    return x, y
+
 st.set_page_config(layout="centered")  # set to "wide" for widescreen
 
-df = pd.read_csv('data/newdata.csv', index_col='Date')
-df.rename({
-     'MoneyboxCashISA': 'Cash ISA',
-     'MoneyboxS&SISA': 'Stocks/Shares ISA',
-     'NatwestSavings': 'Regular Saver',
-     'UlsterBank': 'Easy-access Saver',
-     'Barclaycard': 'Credit card (primary)',
-     'NatwestCredit': 'Credit card (secondary)'
-}, axis=1, inplace=True)
-
+df, csdf = data_load()
 
 # Seperate credit and debit accounts
 credit_accs = {'Credit card (primary)', 'Credit card (secondary)'}
@@ -145,14 +153,11 @@ with edit_tab:
         st.download_button("Download", open('data/newdata.csv', 'r'), 'data.csv')
 
 with creditscore_tab:
-    csdf = pd.read_csv('data/creditscores.csv', index_col='Date')
     # I use 3 providers to access all three brokers' scores in the UK:
-    # - Experian = Experian
-    # - Equifax = Clear Score
-    # - TransUnion = Credit Karma
-    # /999, /1000, /710 respectively
-    px.pie(csdf, names=['Experian'])
-
+    # - Experian = Experian (score/999)
+    # - Equifax = Clear Score (score/1000)
+    # - TransUnion = Credit Karma (score/710)
+    st.plotly_chart(px.pie(csdf, names=['Experian']))
 
 with todo_tab:
     things_to_do = textwrap.dedent("""
