@@ -82,7 +82,7 @@ with st.container():
             f"{net_now-net_last:,.2f}"
         )
 
-view_tab, edit_tab = st.tabs(['View', 'Edit'])
+view_tab, edit_tab, todo_tab = st.tabs(['View', 'Edit', 'To do'])
 with view_tab:
     st.write("""
     ### These lines represent accounts with actual money in
@@ -143,3 +143,13 @@ with edit_tab:
     
     with col2:
         st.download_button("Download", open('data/newdata.csv', 'r'), 'data.csv')
+
+with todo_tab:
+    things_to_do = textwrap.dedent("""
+        - Improve hover data on existing graphs
+        - Add information about credit scores
+        - Add totals to existing graphs
+        - Combined debit and credit graph(s)
+        - Breakdown of spending
+        - (link to Monzo) - hightlight trends and recent transactions?
+    """)
