@@ -153,3 +153,7 @@ with todo_tab:
         - Breakdown of spending
         - (link to Monzo) - hightlight trends and recent transactions?
     """)
+    st.write(f"""
+    ### Summary of ideas to implement next
+    {things_to_do}
+    """)
