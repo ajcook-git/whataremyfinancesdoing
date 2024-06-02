@@ -82,7 +82,7 @@ with st.container():
             f"{net_now-net_last:,.2f}"
         )
 
-view_tab, edit_tab, todo_tab = st.tabs(['View', 'Edit', 'To do'])
+view_tab, edit_tab, creditscore_tab, todo_tab = st.tabs(['View', 'Edit', 'Credit Scores', 'To do'])
 with view_tab:
     st.write("""
     ### These lines represent accounts with actual money in
@@ -144,6 +144,16 @@ with edit_tab:
     with col2:
         st.download_button("Download", open('data/newdata.csv', 'r'), 'data.csv')
 
+with creditscore_tab:
+    csdf = pd.read_csv('data/creditscores.csv', index_col='Date')
+    # I use 3 providers to access all three brokers' scores in the UK:
+    # - Experian = Experian
+    # - Equifax = Clear Score
+    # - TransUnion = Credit Karma
+    # /999, /1000, /710 respectively
+    px.pie(csdf, names=['Experian'])
+
+
 with todo_tab:
     things_to_do = textwrap.dedent("""
         - Improve hover data on existing graphs
@@ -152,6 +162,7 @@ with todo_tab:
         - Combined debit and credit graph(s)
         - Breakdown of spending
         - (link to Monzo) - hightlight trends and recent transactions?
+        - Show personal allocation between banks
     """)
     st.write(f"""
     ### Summary of ideas to implement next
