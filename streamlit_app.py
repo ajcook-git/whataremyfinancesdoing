@@ -164,7 +164,8 @@ with creditscore_tab:
     mask = [999, 1_000, 710]
 
     fig = px.pie(
-        csdf.loc[month_now] / mask
+        csdf.loc[month_now] / mask,
+        names=['Experian']
     )
     st.plotly_chart(fig)
 
