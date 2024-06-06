@@ -162,23 +162,26 @@ with creditscore_tab:
     # - TransUnion = Credit Karma (score/710)
     month_now = datetime.datetime.now().strftime('%Y-%m')
     mask = [999, 1_000, 710]
+
     data = csdf.loc[month_now, 'Equifax'] / 999
 
-    fig = px.pie(
-        names=['Equifax', None], 
-        values=[data, 1-data]
-    )
+    fig = px.pie()
     st.plotly_chart(fig)
 
 with todo_tab:
     things_to_do = textwrap.dedent("""
         - Improve hover data on existing graphs
-        - Add information about credit scores
+        - Add information about Credit Scores
         - Add totals to existing graphs
         - Combined debit and credit graph(s)
         - Breakdown of spending
         - (link to Monzo) - hightlight trends and recent transactions?
         - Show personal allocation between banks
+        - Track inflation and the BoE base rate
+        - Track savings interest per account, and interest on Credit cards
+        - Create personal CPI for products tailored to me
+        - Track emergency fund
+        - Track local property value 
     """)
     st.write(f"""
     ### Summary of ideas to implement next
