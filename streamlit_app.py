@@ -38,7 +38,7 @@ debit_df = df[debit_cols]
 credit_df = df[credit_cols]
 
 # Calculate totals and differences from previous month
-month_now = datetime.datetime.now().month - 1
+month_now = datetime.datetime.now().month - 0
 month_last = month_now - 1
 debit_now = debit_df.iloc[month_now].sum()
 debit_last = debit_df.iloc[month_last].sum()
@@ -72,6 +72,7 @@ st.write("### Summary")
 with st.container():
     col1, col2, col3 = st.columns(3)
     with col1:
+        st.text(f"Assuming month is: {month_now}")
         st.metric(
             "Debit",
             f"£{debit_now:,.2f}",
