@@ -72,7 +72,6 @@ st.write("### Summary")
 with st.container():
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.text(f"Assuming month is: {month_now}")
         st.metric(
             "Debit",
             f"£{debit_now:,.2f}",
