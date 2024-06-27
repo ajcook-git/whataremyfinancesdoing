@@ -38,7 +38,7 @@ debit_df = df[debit_cols]
 credit_df = df[credit_cols]
 
 # Calculate totals and differences from previous month
-month_now = datetime.datetime.now().month - 0
+month_now = datetime.datetime.now().month
 month_last = month_now - 1
 debit_now = debit_df.iloc[month_now].sum()
 debit_last = debit_df.iloc[month_last].sum()
