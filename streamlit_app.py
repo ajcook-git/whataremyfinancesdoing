@@ -56,7 +56,7 @@ else:
 
 multi = f"""
 # Financial Health
-**{datetime.datetime.now().strftime('%A %d %B %Y')}**
+**{datetime.datetime.now().strftime('%A %d %B, %Y')}**
 
 {home_message}
 """
