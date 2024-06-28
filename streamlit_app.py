@@ -55,7 +55,7 @@ else:
         home_message += " But overall, you're still :green[positive]! 😀"
 
 multi = f"""
-# Adam's Financial Health
+# Financial Health
 **{datetime.datetime.now().strftime('%A %d %B %Y')}**
 
 {home_message}
