@@ -109,6 +109,7 @@ with view_tab:
     )
     debit_fig.update_xaxes(
         dtick="M1",
+        tickformat="%b\n%Y"
     )
     debit_fig.update_layout(
         legend=dict(
