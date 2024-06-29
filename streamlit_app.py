@@ -105,10 +105,10 @@ with view_tab:
             value='Amount (£)',
             Date=""
         ),
-        xaxis=dict(
-            dtick='M1'
-        ),
         title="Current value of accounts over time"
+    )
+    debit_fig.update_xaxes(
+        dtick="M1",
     )
     debit_fig.update_layout(
         legend=dict(
