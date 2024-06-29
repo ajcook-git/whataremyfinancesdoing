@@ -62,7 +62,7 @@ multi = f"""
 """
 st.markdown(multi)
 
-if not all(df.iloc[datetime.datetime.now().month-1].notna()):
+if not all(df.iloc[month_now].notna()):
     st.write(textwrap.dedent("""
         **Warning:** it looks like your data is out of date!
     """))
@@ -105,6 +105,10 @@ with view_tab:
             value='Amount (£)',
             Date=""
         ),
+        xaxis=dict(
+            dtick='M1'
+        ),
+        title="Current value of accounts over time"
     )
     debit_fig.update_layout(
         legend=dict(
