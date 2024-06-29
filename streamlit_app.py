@@ -109,7 +109,8 @@ with view_tab:
     )
     debit_fig.update_xaxes(
         dtick="M1",
-        tickformat="%b\n%Y"
+        tickformat="%b\n%Y",
+        ticklabelmode="period"
     )
     debit_fig.update_layout(
         legend=dict(
@@ -135,6 +136,11 @@ with view_tab:
             value='Amount (£)',
             Date=""
         ),
+    )
+    credit_fig.update_xaxes(
+        dtick="M1",
+        tickformat="%b\n%Y",
+        ticklabelmode="period"
     )
     credit_fig.update_layout(
         legend=dict(
