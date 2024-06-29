@@ -140,7 +140,8 @@ with view_tab:
     credit_fig.update_xaxes(
         dtick="M1",
         tickformat="%b\n%Y",
-        ticklabelmode="period"
+        ticklabelmode="period",
+        xperiodalignment="end"
     )
     credit_fig.update_layout(
         legend=dict(
