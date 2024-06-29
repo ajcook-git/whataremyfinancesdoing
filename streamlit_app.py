@@ -141,7 +141,6 @@ with view_tab:
         dtick="M1",
         tickformat="%b\n%Y",
         ticklabelmode="period",
-        xperiodalignment="end"
     )
     credit_fig.update_layout(
         legend=dict(
