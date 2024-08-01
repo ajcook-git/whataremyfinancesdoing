@@ -1,14 +1,14 @@
 """ Provides functions to load various data """
 
 import pandas as pd
-
-# TODO: Replace with a connectors to Google Sheets
+import streamlit as st
 
 CURRENT_ACCOUNTS = ['MoneyboxCashISA', 'MoneyboxS&SISA', 'NatwestSavings', 'UlsterBank']
 CURRENT_ACCOUNTS_DESC = ['Cash ISA', 'Stocks/Shares ISA', 'Regular Saver', 'Easy-access Saver']
 CREDIT_ACCOUNTS = ['Barclaycard', 'NatwestCredit']
 CREDIT_ACCOUNTS_DESC = ['Barclays Credit', 'Natwest Credit']
 
+@st.cache_data
 def load_account_data(exclude: list[str] = None) -> pd.DataFrame:
     """ Load and pre-process accounts data """
     # loads bank balances
@@ -18,7 +18,8 @@ def load_account_data(exclude: list[str] = None) -> pd.DataFrame:
               axis=1, inplace=True)
 
     try:
-        df.drop(exclude, axis=1, inplace=True)
+        if exclude:
+            df.drop(exclude, axis=1, inplace=True)
     except KeyError:
         raise ValueError("Account name(s) from exclude list not found in: "
                         f"{', '.join(df.columns)}") from None
@@ -30,6 +31,7 @@ def load_account_data(exclude: list[str] = None) -> pd.DataFrame:
 
     return df
 
+@st.cache_data
 def load_creditscores() -> pd.DataFrame:
     """ Load a pre-process credit score data """
     df = pd.read_csv('data/creditscores.csv', index_col='Date',
