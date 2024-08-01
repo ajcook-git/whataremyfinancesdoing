@@ -6,7 +6,7 @@ This application is for showing my current finances, in pretty graphs.
 import datetime
 import streamlit as st
 
-st.set_page_config(page_title="Finances", page_icon=":material/paid:")
+st.set_page_config(page_title="What's my money doing?", page_icon=":material/paid:")
 
 summary = st.Page("pages/summary.py", title="Summary", icon=":material/home:")
 accounts = st.Page("pages/accounts.py", title="Accounts", icon=":material/account_balance:")
