@@ -1,12 +1,16 @@
 """ Information about my emergency fund """
 
+from pathlib import Path
+import sys
 import streamlit as st
 import plotly.express as px
 from utils import data_prep
 
+sys.path.append(Path.joinpath(Path(__file__), '../'))
+
 st.write("# Emergency Fund 🔥")
 
-exclude = ['Regular Saver', 'Marcus']
+exclude = ['Regular Saver']
 page_cash_accounts = list(set(data_prep.CASH_ACCOUNTS).difference(set(exclude)))
 
 df = data_prep.load_account_data(exclude=exclude)
@@ -51,7 +55,8 @@ st.write(message)
 
 # Breakdown of cash accounts plot
 fig2 = px.bar(df[page_cash_accounts],
-              title="How your cash is split")
+              title="How your cash is split",
+              color_discrete_sequence=px.colors.qualitative.Pastel1)
 fig2.add_hline(y=FUND, line_dash="dash")
 fig2.update_xaxes(dtick="M1", tickformat="%b\n%Y", ticklabelmode="period")
 st.plotly_chart(fig2)

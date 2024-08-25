@@ -10,7 +10,8 @@ df = data_prep.load_account_data()
 st.write("# Accounts 🏦")
 
 st.write("### Cash")
-fig1 = px.line(df[data_prep.CASH_ACCOUNTS], labels={"value": "Amount (£)", "Date": ""})
+fig1 = px.bar(df[data_prep.CASH_ACCOUNTS], labels={"value": "Amount (£)", "Date": ""},
+              color_discrete_sequence=px.colors.qualitative.Pastel1)
 fig1.update_xaxes(dtick="M1", tickformat="%b\n%Y", ticklabelmode="period")
 st.plotly_chart(fig1)
 

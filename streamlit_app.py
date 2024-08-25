@@ -6,8 +6,10 @@ This application is for showing my current finances, in pretty graphs.
 import datetime
 import streamlit as st
 from utils import data_prep
+# import plotly.express as px
 
 st.set_page_config(page_title="What's my money doing?", page_icon=":material/paid:")
+# COLOUR_SEQ = color_discrete_sequence=
 
 summary = st.Page("webpages/summary.py", title="Summary", icon=":material/home:")
 accounts = st.Page("webpages/accounts.py", title="Accounts", icon=":material/account_balance:")
@@ -38,6 +40,8 @@ with st.sidebar.container():
     st.metric("Credit Card", f"£{CREDIT_NOW:,.2f}", f"{CREDIT_NOW-CREDIT_PREVIOUS:,.2f}",
                 delta_color='inverse')
     st.metric("Total Net", f"£{NET_NOW:,.2f}", f"{NET_NOW-NET_PREVIOUS:,.2f}")
+
+    st.write("The difference metrics are compared to the previous month")
 
 pg = st.navigation([summary, accounts, bills, goals, emergency, mortgage,
                     credit_score, todo])
